@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Kitob
 # Create your views here.
 
 def zropage(request):
-    text = "Salom bu mening brinchi DJANGO saytim"
-    text += "<br><br>Asalomu alekum mening ismim Muhammadamin "
-    return HttpResponse(text)
+    kitoblar = Kitob.objects.all()
+    context  = {
+          'books': kitoblar
+    }
+    return render(request, template_name='index.html', context=context)
